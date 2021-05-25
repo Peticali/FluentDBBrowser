@@ -1,0 +1,74 @@
+﻿<Window x:Class="DbBrowser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DbBrowser"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="#00000000"
+        Foreground="white"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF" 
+        
+        fw:AcrylicWindow.Enabled="True"
+        fw:AcrylicWindow.TintColor="black"
+        fw:AcrylicWindow.NoiseOpacity="0.03"
+        
+        fw:AcrylicWindow.ExtendViewIntoTitleBar="True" FontSize="15" Height="668" Width="936" WindowStyle="None" AllowsTransparency="True"  WindowStartupLocation="CenterScreen"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid fw:PointerTracker.Enabled="True">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Db Browser" FontSize="24" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+
+                <ListViewItem Padding="0" Foreground="White">
+                    <StackPanel Orientation="Horizontal"/>
+                </ListViewItem>
+                <TextBlock Text="Menu" Margin="15" FontWeight="DemiBold" Foreground="White"/>
+
+
+                <ListView FontSize="15">
+                    <ListViewItem Padding="1" Foreground="white"   MouseUp="CreateConnection" >
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="File" Margin="15" Foreground="#DDFFFFFF"/>
+                            <TextBlock Text="Open"  Foreground="#DDFFFFFF" VerticalAlignment="Center"  />
+                        </StackPanel>
+
+
+                    </ListViewItem>
+                    <ListViewItem Padding="1" Height="50" MouseUp="ListViewItem_MouseUp">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="PlayArrow" Margin="15" Foreground="#DDFFFFFF"/>
+                            <TextBlock Text="RunSQL" Foreground="#DDFFFFFF"  VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+
+                </ListView>
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Background="#18000000" Grid.Column="1" >
+
+            <DataGrid x:Name="DataGri" CanUserAddRows="False" CanUserDeleteRows="False" >
+                <DataGrid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#00000000"/>
+                        <GradientStop Color="#33FFFFFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </DataGrid.Background>
+            </DataGrid>
+
+        </Grid>
+        <ComboBox x:Name="Combobox1" HorizontalAlignment="Center" Width="350" Background="Transparent" SelectionChanged="ChangeTable" Margin="0,305,0,0" BorderBrush="#89FFFFFF" VerticalAlignment="Top"/>
+        <TextBox x:Name="sqlBox" Height="32" Text="Your SQL" TextWrapping="Wrap" Width="184" Margin="128,160,38,476" BorderBrush="White" Background="#FF343434"/>
+    </Grid>
+</Window>
